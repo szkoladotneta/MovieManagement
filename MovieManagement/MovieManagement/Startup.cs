@@ -8,8 +8,10 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MovieManagement.Application;
 using MovieManagement.Infrastructure;
 using MovieManagement.Persistance;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,6 +32,7 @@ namespace MovieManagement.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplication();
             services.AddInfrastructure(Configuration);
             services.AddPersistance(Configuration);
             services.AddControllers();
@@ -56,8 +59,9 @@ namespace MovieManagement.Api
             app.UseHealthChecks("/hc");
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.UseSerilogRequestLogging();
 
+            app.UseRouting();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
