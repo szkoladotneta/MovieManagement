@@ -15,12 +15,10 @@ namespace MovieManagement.Application.Directors.Queries.GetDirectorDetail
     {
         private readonly IMovieDbContext _context;
         private IMapper _mapper;
-        private readonly ICurrentUserService _userService;
-        public GetDirectorDetailQueryHandler(IMovieDbContext movieDbContext, IMapper mapper, ICurrentUserService userService)
+        public GetDirectorDetailQueryHandler(IMovieDbContext movieDbContext, IMapper mapper)
         {
             _context = movieDbContext;
             _mapper = mapper;
-            _userService = userService;
         }
         public async Task<DirectorDetailVm> Handle(GetDirectorDetailQuery request, CancellationToken cancellationToken)
         {
