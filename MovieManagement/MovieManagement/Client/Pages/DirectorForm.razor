@@ -1,0 +1,59 @@
+﻿@page "/addDirector"
+@using MovieManagement.Client.Models
+@using System.Text.Json
+@inject IJSRuntime JSRuntime;
+
+<h3>Director Form</h3>
+
+<EditForm EditContext="@editContext" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset">
+    <DataAnnotationsValidator />
+    <div class="form-row">
+        <div class="form-group col">
+            <label>First Name</label>
+            <InputText @bind-Value="model.FirstName" class="form-control" />
+            <ValidationMessage For="@(() => model.FirstName)" />
+        </div>
+        <div class="form-group col">
+            <label>Last Name</label>
+            <InputText @bind-Value="model.LastName" class="form-control" />
+            <ValidationMessage For="@(() => model.LastName)" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label>Date of Birth</label>
+            <InputDate @bind-Value="model.DoB" class="form-control" />
+            <ValidationMessage For="@(() => model.DoB)" />
+        </div>
+        <div class="form-group col">
+            <label>Place of Birth</label>
+            <InputText @bind-Value="model.PlaceOfBirth" class="form-control" />
+            <ValidationMessage For="@(() => model.PlaceOfBirth)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-warning">Clear</button>
+</EditForm>
+
+@code {
+    private DirectorsForm model = new DirectorsForm();
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(model);
+    }
+
+    private void HandleValidSubmit()
+    {
+        var modelJson = JsonSerializer.Serialize(model, new JsonSerializerOptions { WriteIndented = true });
+        JSRuntime.InvokeVoidAsync("alert", $"SUCCESS!! :-)\n\n{modelJson}");
+    }
+
+    private void HandleReset()
+    {
+        model = new DirectorsForm();
+        editContext = new EditContext(model);
+    }
+}

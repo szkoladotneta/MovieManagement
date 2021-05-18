@@ -1,0 +1,45 @@
+﻿@using MovieManagement.Client.Models
+@inject IJSRuntime JSRuntime
+@implements IAsyncDisposable
+
+<h3>DirectorsTable</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var director in Directors)
+        {
+            <tr>
+                <td>@director.FullName</td>
+                <td><button @onclick="() => SayHi(director.FullName)">Przywitaj się</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public List<DirectorDto> Directors { get; set; }
+
+    private Task<IJSObjectReference> _module;
+    private Task<IJSObjectReference> Module => _module ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", "./js/director.js").AsTask();
+
+    async Task SayHi(string name)
+    {
+        var module = await Module;
+        await module.InvokeVoidAsync("sayHi", name);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_module != null)
+        {
+            var module = await _module;
+            await module.DisposeAsync();
+        }
+    }
+}

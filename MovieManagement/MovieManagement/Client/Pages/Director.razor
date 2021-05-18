@@ -1,0 +1,18 @@
+﻿@page "/directors"
+@using MovieManagement.Client.Models
+@using MovieManagement.Client.Components
+
+
+<h1>Directors list</h1>
+<a href="addDirector">Add new</a>
+<DirectorsTable Directors="@directors"></DirectorsTable>
+
+@code {
+    private List<DirectorDto> directors;
+
+    protected override async Task OnInitializedAsync()
+    {
+        directors = new List<DirectorDto>()
+        { new DirectorDto() {FullName = "Andrzej Wajda" }, new DirectorDto() {FullName ="Quentin Tarantino" } };
+    }
+}
