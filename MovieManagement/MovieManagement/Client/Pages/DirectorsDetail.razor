@@ -1,0 +1,36 @@
+﻿@page "/director"
+@using MovieManagement.Client.Models
+@inject HttpClient Http
+
+<AuthorizeView>
+    <Authorized>
+        @if (director == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <h3>DirectorsDetail</h3>
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@director.FullName</h5>
+                    <p class="card-text">@director.LastMovieName</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        }
+        </Authorized>
+    <NotAuthorized>
+        <p>I'm sorry, I can't display any claims until you log in</p>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private DirectorDetailVm director;
+
+    protected override async Task OnInitializedAsync()
+    {
+        director = await Http.GetFromJsonAsync<DirectorDetailVm>("https://localhost:44384/api/directors/1");
+    }
+}

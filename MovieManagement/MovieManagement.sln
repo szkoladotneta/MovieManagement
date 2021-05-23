@@ -21,11 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieManagement.Infrastruct
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieManagement.Persistance", "MovieManagement.Persistance\MovieManagement.Persistance.csproj", "{3D259DD1-DC32-4CC5-9F6D-57912AC7222A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieManagement.Server", "MovieManagement\Server\MovieManagement.Server.csproj", "{081C87B9-CDBE-4CE3-A001-F8A3CAD676F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieManagement.Server", "MovieManagement\Server\MovieManagement.Server.csproj", "{081C87B9-CDBE-4CE3-A001-F8A3CAD676F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieManagement.Client", "MovieManagement\Client\MovieManagement.Client.csproj", "{9067310B-D4E2-45EF-BE13-B9A749558BA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieManagement.Client", "MovieManagement\Client\MovieManagement.Client.csproj", "{9067310B-D4E2-45EF-BE13-B9A749558BA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieManagement.Shared", "MovieManagement\Shared\MovieManagement.Shared.csproj", "{8488E750-FE65-4665-8520-498B0129430C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieManagement.Shared", "MovieManagement\Shared\MovieManagement.Shared.csproj", "{8488E750-FE65-4665-8520-498B0129430C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

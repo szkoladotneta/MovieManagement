@@ -41,8 +41,11 @@ namespace MovieManagement.Api
             services.AddControllers();
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin());
-
+                options.AddDefaultPolicy(
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("https://localhost:5000").AllowAnyHeader().AllowAnyMethod();
+                                  });
             });
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(typeof(ICurrentUserService), typeof(CurrentUserService));
@@ -113,6 +116,8 @@ namespace MovieManagement.Api
             app.UseSerilogRequestLogging();
 
             app.UseRouting();
+            app.UseCors();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

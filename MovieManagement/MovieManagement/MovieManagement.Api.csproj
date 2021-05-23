@@ -9,6 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Client\**" />
+    <Compile Remove="Server\**" />
+    <Compile Remove="Shared\**" />
+    <Content Remove="Client\**" />
+    <Content Remove="Server\**" />
+    <Content Remove="Shared\**" />
+    <EmbeddedResource Remove="Client\**" />
+    <EmbeddedResource Remove="Server\**" />
+    <EmbeddedResource Remove="Shared\**" />
+    <None Remove="Client\**" />
+    <None Remove="Server\**" />
+    <None Remove="Shared\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="IdentityModel" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Application.Directors.Commands.CreateDirector;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace MovieManagement.Api.Controllers
 {
+    [EnableCors]
     [Route("api/directors")]
     [Authorize]
     public class DirectorsController : BaseController
